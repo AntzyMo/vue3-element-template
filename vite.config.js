@@ -20,12 +20,15 @@ const createVisualizer = (command) => {
     })
   }
 }
+
 export default defineConfig(({ command }) => ({
   plugins: [
     vue(),
 
     AutoImport({
       resolvers: [ElementPlusResolver()],
+      /* 注册全局引用 */
+      imports:['vue'] 
     }),
     Components({
       resolvers: [ElementPlusResolver()],
@@ -33,6 +36,7 @@ export default defineConfig(({ command }) => ({
 
     createVisualizer(command),
   ],
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -44,6 +48,7 @@ export default defineConfig(({ command }) => ({
   //   proxy: {
   //     "/api": {
   //       // target:'https://test.jobcn.com', // 测试
+  //       target:'/mock', // 测试
   //       changeOrigin: true,
   //       rewrite: (path) => path.replace(/^\/api/, ""),
   //     },

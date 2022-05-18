@@ -7,6 +7,8 @@ import router from './router'
 // 清除默认样式
 import 'normalize.css/normalize.css'
 
+import './mock'
+
 const app = createApp(App)
 
 app.use(createPinia())

@@ -4,12 +4,11 @@ import qs from 'qs'
 
 // 创建一个axios实例
 const service = axios.create({
-  baseURL: '/api',
+  baseURL: '/mock',
   timeout: 30000,
   transformRequest: [(data) => qs.stringify(data)],
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/x-www-form-urlencoded'
   },
 })
 
@@ -28,28 +27,19 @@ service.interceptors.request.use(
 // 设置响应拦截
 service.interceptors.response.use(
   (res) => {
-    loading(false)
     const {
+      code,
       data,
-      config: { url },
-    } = res
-    const code = data?.globalErrorCode
-    const isUerInfoUrl = url.includes('person/userInfo.ujson')
-
-    if (code) {
-      if (code == 3) {
-        // 有个接口获取用户信息 不需要跳登录页面
-        if (isUerInfoUrl && data.success) return
-      }
-
-      if (!isUerInfoUrl) Toast(data.msg)
-      return Promise.reject({ code, msg: data.msg })
+      msg
+    } = res.data
+    console.log(code,'de')
+    if (code==200) {
+      return data 
+    }else{
+      return Promise.reject(msg)
     }
-
-    return data
   },
   (err) => {
-    loading(false)
     return Promise.reject(err)
   }
 )
