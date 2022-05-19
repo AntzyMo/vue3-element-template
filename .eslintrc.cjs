@@ -8,6 +8,8 @@ module.exports = {
     "vue/setup-compiler-macros": true,
   },
   rules: {
+    'vue/require-default-prop':'off',
+    'vue/no-setup-props-destructure':'off',
     'vue/multi-word-component-names': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     "vue/max-attributes-per-line": [

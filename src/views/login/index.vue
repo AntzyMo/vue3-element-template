@@ -41,28 +41,27 @@
 </template>
 <script setup>
   import { UserFilled, Lock } from '@element-plus/icons-vue'
-  import {useUser} from '@/stores'
-import { useRouter } from 'vue-router';
-  
-const formRules = {
+  import { useUser } from '@/stores'
+  import { useRouter } from 'vue-router'
+
+  const formRules = {
     username: { trigger: 'blur', message: '不能为空', required: true },
     password: { trigger: 'blur', message: '不能为空', required: true },
   }
 
-const store=useUser()
-const router=useRouter()
+  const store = useUser()
+  const router = useRouter()
+
   const formRef = ref()
-  const form= reactive({
-    username:'',
-    password:''
+  const form = reactive({
+    username: '',
+    password: '',
   })
 
   const login = async () => {
     await formRef.value.validate()
     await store.login(form)
     router.replace('/')
-
-
   }
 </script>
 <style lang="scss" scoped>
