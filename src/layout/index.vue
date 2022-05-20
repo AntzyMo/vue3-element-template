@@ -1,6 +1,6 @@
 <script setup>
   import MenuCom from './components/menu/menu.vue'
-  import MainCom from './components/Main/index.vue'
+  import MainCom from './components/main/index.vue'
   import headerCom from './components/header/index.vue'
 
   const collapsed = ref(false)
