@@ -9,7 +9,7 @@ jobs:
     # 运行所需要的环境
     runs-on: ubuntu-latest
 
-     steps:
+    steps:
       # 步骤名
       - name: checkout
         # 使用的actions脚本，这里是官方提供的获取源码脚本
