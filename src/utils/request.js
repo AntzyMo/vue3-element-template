@@ -8,7 +8,7 @@ const service = axios.create({
   timeout: 30000,
   transformRequest: [(data) => qs.stringify(data)],
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 })
 
@@ -27,15 +27,12 @@ service.interceptors.request.use(
 // 设置响应拦截
 service.interceptors.response.use(
   (res) => {
-    const {
-      code,
-      data,
-      msg
-    } = res.data
-    console.log(code,'de')
-    if (code==200) {
-      return data 
-    }else{
+    console.log(res, 'res.data')
+    const { code, data, msg } = res.data
+    console.log(code, 'de')
+    if (code == 200) {
+      return data
+    } else {
       return Promise.reject(msg)
     }
   },

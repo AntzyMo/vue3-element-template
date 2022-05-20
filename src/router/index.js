@@ -35,14 +35,34 @@ export const localRoutes = [
       {
         path: 'page1',
         name: 'page1',
-        component: () => import('@/views/page1/page1.vue'),
+        component: () => import('@/views/page/page1.vue'),
         meta: { title: 'page1' },
       },
       {
         path: 'page2',
         name: 'page2',
-        component: () => import('@/views/page1/page2.vue'),
+        component: () => import('@/views/page/page2.vue'),
         meta: { title: 'page2' },
+      },
+    ],
+  },
+
+  {
+    path: '/page1',
+    component: Layout,
+    meta: { title: 'page1' },
+    children: [
+      {
+        path: 'page3',
+        name: 'page3',
+        component: () => import('@/views/page1/page1.vue'),
+        meta: { title: 'page3' },
+      },
+      {
+        path: 'page4',
+        name: 'page4',
+        component: () => import('@/views/page1/page2.vue'),
+        meta: { title: 'page4' },
       },
     ],
   },
@@ -55,6 +75,7 @@ const routes = [
     meta: { hidden: true },
     component: () => import('@/views/login/index.vue'),
   },
+
   ...localRoutes,
 ]
 

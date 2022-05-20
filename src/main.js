@@ -7,7 +7,9 @@ import router from './router'
 // 清除默认样式
 import 'normalize.css/normalize.css'
 
-import './mock'
+// 路由守卫
+import './permission'
+// import './mock'
 
 const app = createApp(App)
 

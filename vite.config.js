@@ -3,14 +3,17 @@ import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+/* 自动引用组件 和 按需加载element plus组件库 */
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-// 生成依赖图
+import { viteMockServe } from 'vite-plugin-mock'
+
+/* 生成依赖图 */
 import { visualizer } from 'rollup-plugin-visualizer'
 
-// 生成打包分析包
+/* 生成打包分析包 */
 const createVisualizer = (command) => {
   if (command === 'build') {
     return visualizer({
@@ -22,10 +25,10 @@ const createVisualizer = (command) => {
 }
 
 export default defineConfig(({ command }) => ({
-  base: '/vue3-element-template/',
+  base: command === 'build' ? '/vue3-element-template/' : '',
   plugins: [
     vue(),
-
+    viteMockServe({ mockPath: 'mock', supportTs: false }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
       /* 注册全局引用 */

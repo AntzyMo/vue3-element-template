@@ -1,20 +1,19 @@
 import request from '@/utils/request'
 
-
 // 登录
-export const login = data => {
+export const login = (data) => {
   return request({
     url: '/user/login',
-    method: 'post',
-    data
+    method: 'get',
+    params: data,
   })
 }
 
 // 获取用户信息
-export const getUserInfo = data => {
+export const getUserInfo = (params) => {
   return request({
     url: '/user/userInfo',
-    method: 'post',
-    data
+    method: 'get',
+    params,
   })
 }

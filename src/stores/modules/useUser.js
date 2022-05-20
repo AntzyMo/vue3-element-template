@@ -1,25 +1,44 @@
 import { defineStore } from 'pinia'
-import {getStorage} from '@/hooks'
-import { login as loginApi ,getUserInfo } from '@/api/login'
-
+import { getStorage, setStorage, removeStorage } from '@/hooks'
+import { login, getUserInfo } from '@/api/login'
 
 export default defineStore({
   id: 'user',
   state: () => ({
     token: getStorage('token'),
-    userInfo:getStorage('userInfo')||{}
+    userInfo: getStorage('userInfo') || {},
+    routes: [],
   }),
   actions: {
+    /* 登录 */
     async login(form) {
-      try{
-        const {token} = await loginApi(form)
-        console.log(token,'token')
-        this.token=token
-        const res=await getUserInfo({token})
-        this.userInfo=res
-      }catch(err){
+      try {
+        const { token } = await login(form)
+        this.token = token
+        setStorage('token', token)
+      } catch (err) {
         return Promise.reject(err)
       }
+    },
+
+    /* 获取用户信息 */
+    async getUserInfo() {
+      try {
+        const data = await getUserInfo({ token: this.token })
+        this.userInfo = data
+        setStorage('userInfo', data)
+      } catch (err) {
+        return Promise.reject(err)
+      }
+    },
+
+    /* 获取路由 */
+    async getRoutes() {},
+
+    /* 退出登录 */
+    logout() {
+      removeStorage('token', 'userInfo')
+      location.reload()
     },
   },
 })

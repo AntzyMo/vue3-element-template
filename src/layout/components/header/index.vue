@@ -1,5 +1,7 @@
 <script setup>
   import { Expand, Fold, CaretBottom } from '@element-plus/icons-vue'
+  import { useUser } from '@/stores'
+  const { logout } = useUser()
 
   const emit = defineEmits(['update:collapsed'])
 
@@ -13,10 +15,6 @@
   // 处理侧边栏
   const handleSideBarFn = () => {
     emit('update:collapsed', !props.collapsed)
-  }
-
-  const logout = () => {
-    // this.$store.dispatch('user/logout')
   }
 </script>
 
@@ -44,7 +42,7 @@
         <CaretBottom class="CaretBottom" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="logout"> 退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

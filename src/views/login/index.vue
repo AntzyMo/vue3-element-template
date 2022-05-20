@@ -1,3 +1,9 @@
+<script setup>
+  import { UserFilled, Lock } from '@element-plus/icons-vue'
+  import uesLogin from './hooks/uesLogin'
+  const { formRules, formRef, form, login } = uesLogin()
+</script>
+
 <template>
   <div class="container">
     <div class="login-box">
@@ -12,7 +18,7 @@
         <div class="box">
           <el-form-item prop="username">
             <el-input
-              v-model="form.username"
+              v-model.trim="form.username"
               class="input"
               :prefix-icon="UserFilled"
               placeholder="admin"
@@ -22,7 +28,7 @@
 
           <el-form-item prop="password">
             <el-input
-              v-model="form.password"
+              v-model.trim="form.password"
               placeholder="123456"
               clearable
               show-password
@@ -39,31 +45,7 @@
     </div>
   </div>
 </template>
-<script setup>
-  import { UserFilled, Lock } from '@element-plus/icons-vue'
-  import { useUser } from '@/stores'
-  import { useRouter } from 'vue-router'
 
-  const formRules = {
-    username: { trigger: 'blur', message: '不能为空', required: true },
-    password: { trigger: 'blur', message: '不能为空', required: true },
-  }
-
-  const store = useUser()
-  const router = useRouter()
-
-  const formRef = ref()
-  const form = reactive({
-    username: '',
-    password: '',
-  })
-
-  const login = async () => {
-    await formRef.value.validate()
-    await store.login(form)
-    router.replace('/')
-  }
-</script>
 <style lang="scss" scoped>
   .container {
     height: 100vh;
