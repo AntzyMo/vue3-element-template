@@ -22,13 +22,14 @@ const createVisualizer = (command) => {
 }
 
 export default defineConfig(({ command }) => ({
+  base: '/vue3-element-template/',
   plugins: [
     vue(),
 
     AutoImport({
       resolvers: [ElementPlusResolver()],
       /* 注册全局引用 */
-      imports:['vue'] 
+      imports: ['vue'],
     }),
     Components({
       resolvers: [ElementPlusResolver()],
