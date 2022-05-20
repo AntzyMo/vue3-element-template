@@ -28,7 +28,7 @@ export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/vue3-element-template/' : '',
   plugins: [
     vue(),
-    viteMockServe({ mockPath: 'mock', supportTs: false }),
+    viteMockServe({ mockPath: 'mock', supportTs: false, prodEnabled: true }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
       /* 注册全局引用 */
