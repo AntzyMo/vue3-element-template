@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { getStorage, setStorage, removeStorage } from '@/hooks'
-import { login, getUserInfo } from '@/api/login'
+import { login, getUserInfo, getRoutes } from '@/api/login'
+import { localRoutes } from '@/router'
+
+const mergeRoutes = (routes) => {
+  routes.forEach((item) => {})
+}
 
 export default defineStore({
   id: 'user',
@@ -33,7 +38,11 @@ export default defineStore({
     },
 
     /* 获取路由 */
-    async getRoutes() {},
+    async getRoutes() {
+      const route = await getRoutes()
+      console.log(route, 'route')
+      mergeRoutes(route)
+    },
 
     /* 退出登录 */
     logout() {

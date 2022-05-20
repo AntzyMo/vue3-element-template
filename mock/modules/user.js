@@ -26,4 +26,14 @@ export default [
       })
     },
   },
+
+  {
+    url: '/mock/user/routes',
+    method: 'get',
+    response: () => {
+      return success({
+        routesList: ['首页', 'page1', 'page2', 'page3', 'page4'],
+      })
+    },
+  },
 ]

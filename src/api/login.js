@@ -17,3 +17,12 @@ export const getUserInfo = (params) => {
     params,
   })
 }
+
+// 获取用户信息
+export const getRoutes = (params) => {
+  return request({
+    url: '/user/routes',
+    method: 'get',
+    params,
+  })
+}
