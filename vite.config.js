@@ -25,7 +25,9 @@ const createVisualizer = (command) => {
 }
 
 export default defineConfig(({ command }) => ({
+  /* 可以删除 只是用来配置git pages */
   base: command === 'build' ? '/vue3-element-template/' : '',
+  
   plugins: [
     vue(),
     viteMockServe({ mockPath: 'mock', supportTs: false, prodEnabled: true }),

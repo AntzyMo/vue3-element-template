@@ -9,7 +9,6 @@ import 'normalize.css/normalize.css'
 
 // 路由守卫
 import './permission'
-// import './mock'
 
 const app = createApp(App)
 
