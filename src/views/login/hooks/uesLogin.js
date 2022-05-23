@@ -13,8 +13,8 @@ export default () => {
 
   const formRef = ref()
   const form = reactive({
-    username: '',
-    password: '',
+    username: 'admin',
+    password: '123456',
   })
 
   const login = async () => {

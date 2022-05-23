@@ -2,7 +2,7 @@
   "name": "vue3-element-template",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview --port 5050",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
@@ -34,8 +34,7 @@
     "sass": "^1.51.0",
     "unplugin-auto-import": "^0.7.1",
     "unplugin-vue-components": "^0.19.5",
-    "vite": "^2.9.5",
-    "vite-plugin-mock": "^2.9.6"
+    "vite": "^2.9.5"
   },
   "lint-staged": {
     "*.{vue,js,jsx,cjs,mjs}": "eslint --fix",

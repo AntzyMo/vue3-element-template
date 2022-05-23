@@ -5,9 +5,9 @@ import { success, error, getToken } from '../utils'
 export default [
   {
     url: '/mock/user/login',
-    method: 'get',
-    response: ({ query }) => {
-      const { username, password } = query
+    method: 'post',
+    response: ({ body }) => {
+      const { username, password } = qs.parse(body)
       if (username === 'admin' && password === '123456') {
         return success({
           token: Random.guid(),
@@ -19,8 +19,8 @@ export default [
 
   {
     url: '/mock/user/userInfo',
-    method: 'get',
-    response: ({ body }) => {
+    method: 'post',
+    response: (body) => {
       return success({
         name: 'Zbano',
       })
@@ -29,7 +29,7 @@ export default [
 
   {
     url: '/mock/user/routes',
-    method: 'get',
+    method: 'post',
     response: () => {
       return success({
         routesList: ['首页', 'page1', 'page2', 'page3', 'page4'],

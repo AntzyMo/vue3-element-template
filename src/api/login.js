@@ -4,25 +4,25 @@ import request from '@/utils/request'
 export const login = (data) => {
   return request({
     url: '/user/login',
-    method: 'get',
-    params: data,
+    method: 'post',
+    data,
   })
 }
 
 // 获取用户信息
-export const getUserInfo = (params) => {
+export const getUserInfo = (data) => {
   return request({
     url: '/user/userInfo',
-    method: 'get',
-    params,
+    method: 'post',
+    data,
   })
 }
 
 // 获取用户信息
-export const getRoutes = (params) => {
+export const getRoutes = (data) => {
   return request({
     url: '/user/routes',
-    method: 'get',
-    params,
+    method: 'post',
+    data,
   })
 }

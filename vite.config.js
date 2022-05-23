@@ -8,8 +8,6 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-import { viteMockServe } from 'vite-plugin-mock'
-
 /* 生成依赖图 */
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -27,10 +25,9 @@ const createVisualizer = (command) => {
 export default defineConfig(({ command }) => ({
   /* 可以删除 只是用来配置git pages */
   base: command === 'build' ? '/vue3-element-template/' : '',
-  
+
   plugins: [
     vue(),
-    viteMockServe({ mockPath: 'mock', supportTs: false, prodEnabled: true }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
       /* 注册全局引用 */
