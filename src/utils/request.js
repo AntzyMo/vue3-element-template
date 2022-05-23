@@ -4,7 +4,7 @@ import qs from 'qs'
 
 // 创建一个axios实例
 const service = axios.create({
-  baseURL: import.meta.env.DEV? '/mock':'/vue3-element-template/mock',
+  baseURL: '/mock',
   timeout: 30000,
   transformRequest: [(data) => qs.stringify(data)],
   headers: {
