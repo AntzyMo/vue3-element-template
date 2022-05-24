@@ -1,6 +1,7 @@
 <script setup>
-  import { useRouter } from 'vue-router'
   import menuItem from './menuItem.vue'
+  import { useUser } from '@/stores'
+  const store = useUser()
 
   defineProps({
     collapsed: {
@@ -8,11 +9,6 @@
       default: false,
     },
   })
-
-  const {
-    options: { routes },
-  } = useRouter()
-  const routesList = computed(() => routes)
 </script>
 
 <template>
@@ -29,7 +25,7 @@
     </el-menu-item>
 
     <menuItem
-      v-for="route in routesList"
+      v-for="route in store.routesList"
       :key="route.path"
       :base-path="route.path"
       :route="route"

@@ -6,17 +6,68 @@ import Layout from '@/layout/index.vue'
  * meta:{
  *  title      {String}  标题
  *  hidden     {Boolean}  不显示在侧边栏
- *  login      {Boolean} 是否需要登陆后才进页面
  *  pageActive {Number} 如果有写会出现底部导航栏
  *  noInfo     {Boolean} 为true 不显示footerInfo
+ *  role       {String}   路由权限(只能写在children里面)
  * }
  *
  */
 
-export const localRoutes = [
+const asyncRouter = [
+  {
+    path: '/page',
+    name: 'page',
+    component: Layout,
+    meta: { title: 'page' }, // 侧边栏显示的名称
+    children: [
+      {
+        path: 'page1',
+        name: 'page1',
+        component: () => import('@/views/page/page1.vue'),
+        meta: { title: 'page1', role: 'page1' },
+      },
+      {
+        path: 'page2',
+        name: 'page2',
+        component: () => import('@/views/page/page2.vue'),
+        meta: { title: 'page2', role: 'page2' },
+      },
+    ],
+  },
+
+  {
+    path: '/page1',
+    name: 'page12',
+    component: Layout,
+    meta: { title: 'page1' },
+    children: [
+      {
+        path: 'page3',
+        name: 'page3',
+        component: () => import('@/views/page1/page1.vue'),
+        meta: { title: 'page3', role: 'page3' },
+      },
+      {
+        path: 'page4',
+        name: 'page4',
+        component: () => import('@/views/page1/page2.vue'),
+        meta: { title: 'page4', role: 'page4' },
+      },
+    ],
+  },
+]
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    meta: { hidden: true },
+    component: () => import('@/views/login/index.vue'),
+  },
+
   {
     path: '/',
     component: Layout,
+    redirect: '/index',
     children: [
       {
         path: 'index',
@@ -27,56 +78,12 @@ export const localRoutes = [
     ],
   },
 
-  {
-    path: '/page',
-    component: Layout,
-    meta: { title: 'page' },
-    children: [
-      {
-        path: 'page1',
-        name: 'page1',
-        component: () => import('@/views/page/page1.vue'),
-        meta: { title: 'page1' },
-      },
-      {
-        path: 'page2',
-        name: 'page2',
-        component: () => import('@/views/page/page2.vue'),
-        meta: { title: 'page2' },
-      },
-    ],
-  },
+  ...asyncRouter,
 
-  {
-    path: '/page1',
-    component: Layout,
-    meta: { title: 'page1' },
-    children: [
-      {
-        path: 'page3',
-        name: 'page3',
-        component: () => import('@/views/page1/page1.vue'),
-        meta: { title: 'page3' },
-      },
-      {
-        path: 'page4',
-        name: 'page4',
-        component: () => import('@/views/page1/page2.vue'),
-        meta: { title: 'page4' },
-      },
-    ],
-  },
-]
-
-const routes = [
-  {
-    path: '/login',
-    name: 'login',
-    meta: { hidden: true },
-    component: () => import('@/views/login/index.vue'),
-  },
-
-  ...localRoutes,
+  // {
+  //   path:'*',
+  //   component:
+  // }
 ]
 
 const router = createRouter({

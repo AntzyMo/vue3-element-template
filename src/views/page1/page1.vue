@@ -1,5 +1,5 @@
 <script setup></script>
 
-<template>page1</template>
+<template>page3</template>
 
 <style lang="scss" scoped></style>

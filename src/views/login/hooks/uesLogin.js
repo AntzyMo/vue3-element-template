@@ -20,7 +20,6 @@ export default () => {
   const login = async () => {
     await formRef.value.validate()
     await store.login(form)
-    console.log(router, 'router')
     router.replace('/')
   }
 

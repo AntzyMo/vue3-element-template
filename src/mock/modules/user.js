@@ -1,6 +1,8 @@
 import { Random } from 'mockjs'
 import qs from 'qs'
-import { success, error, getToken } from '../utils'
+import { success, error } from '../utils'
+
+const routeList = ['page1', 'page2', 'page3', 'page4']
 
 export default [
   {
@@ -32,8 +34,25 @@ export default [
     method: 'post',
     response: () => {
       return success({
-        routesList: ['首页', 'page1', 'page2', 'page3', 'page4'],
+        routeList,
       })
+    },
+  },
+
+  {
+    url: '/mock/user/modifyroutes',
+    method: 'post',
+    response: ({ body }) => {
+      const { type } = qs.parse(body)
+      console.log(type * 1, 'type')
+      if (type * 1) {
+        routeList.push('page3')
+      } else {
+        const idx = routeList.indexOf('page3')
+        routeList.splice(idx, 1)
+        console.log(routeList, 'routeList')
+      }
+      return success()
     },
   },
 ]

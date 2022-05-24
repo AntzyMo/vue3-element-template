@@ -1,6 +1,8 @@
 import axios from 'axios'
 import qs from 'qs'
-// import { Toast } from 'vant';
+import { ElMessage, ElLoading } from 'element-plus'
+
+let loadingInstance
 
 // 创建一个axios实例
 const service = axios.create({
@@ -15,7 +17,12 @@ const service = axios.create({
 // 设置请求拦截
 service.interceptors.request.use(
   (config) => {
-    if (config?.loading) {
+    if (config.loading) {
+      loadingInstance = ElLoading.service({
+        text: '加载中',
+        target: 'document.body',
+      })
+      console.log(loadingInstance, 'loadingInstance')
     }
     return config
   },
@@ -27,16 +34,27 @@ service.interceptors.request.use(
 // 设置响应拦截
 service.interceptors.response.use(
   (res) => {
-    console.log(res, 'res.data')
+    setTimeout(() => {
+      loadingInstance?.close()
+    }, 3000)
+
     const { code, data, msg } = res.data
-    console.log(code, 'de')
     if (code == 200) {
       return data
     } else {
+      ElMessage({
+        type: 'error',
+        message: msg,
+      })
       return Promise.reject(msg)
     }
   },
   (err) => {
+    loadingInstance?.close()
+    ElMessage({
+      type: 'error',
+      message: err,
+    })
     return Promise.reject(err)
   }
 )

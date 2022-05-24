@@ -1,6 +1,7 @@
 import router from './router'
 import { useUser } from '@/stores'
 import NProgress from 'nprogress' // 进度条
+import 'nprogress/nprogress.css'
 
 NProgress.configure({ showSpinner: false })
 // 白名单(不需要登录就可以访问的名单)
@@ -19,19 +20,15 @@ router.beforeEach(async (to) => {
       router.push({ path: '/' })
       NProgress.done()
     } else {
-      if (!routes.length) {
-        // 获取用户信息
-        await getUserInfo()
+      // 获取用户信息
+      await getUserInfo()
 
-        // 获取路由
-        // const routes = await getRoutes()
-
-        // 路由添加进去了没有及时更新 需要重新进去一次拦截
-        // if (hasRoles) {
-        //   routes.forEach((item) => router.addRoute(item))
-        //   hasRoles = false
-        //   router.push({ ...to, replace: true })
-        // }
+      // 获取路由权限
+      const routes = await getRoutes()
+      if (to.meta?.role) {
+        if (!routes.includes(to.meta.role)) {
+          return false
+        }
       }
     }
   } else {

@@ -5,6 +5,7 @@ export const login = (data) => {
   return request({
     url: '/user/login',
     method: 'post',
+    loading: true,
     data,
   })
 }
@@ -22,6 +23,15 @@ export const getUserInfo = (data) => {
 export const getRoutes = (data) => {
   return request({
     url: '/user/routes',
+    method: 'post',
+    data,
+  })
+}
+
+// 获取用户信息
+export const modofyRoutes = (data) => {
+  return request({
+    url: '/user/modifyroutes',
     method: 'post',
     data,
   })

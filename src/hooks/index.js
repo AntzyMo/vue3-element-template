@@ -14,6 +14,6 @@ export const setStorage = (key, value) => {
   return sessionStorage.setItem(key, value)
 }
 
-export const removeStorage =(...rest)=>{
-    rest.forEach(key=>sessionStorage.removeItem(key))
+export const removeStorage = (...rest) => {
+  rest.forEach((key) => sessionStorage.removeItem(key))
 }

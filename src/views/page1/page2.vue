@@ -1,5 +1,5 @@
 <script setup></script>
 
-<template>paeg2</template>
+<template>paeg4</template>
 
 <style lang="scss" scoped></style>
