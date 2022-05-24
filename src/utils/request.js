@@ -18,11 +18,7 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     if (config.loading) {
-      loadingInstance = ElLoading.service({
-        text: '加载中',
-        target: 'document.body',
-      })
-      console.log(loadingInstance, 'loadingInstance')
+      loadingInstance = ElLoading.service({text: '加载中'})
     }
     return config
   },
