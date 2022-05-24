@@ -11,6 +11,12 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 /* 生成依赖图 */
 import { visualizer } from 'rollup-plugin-visualizer'
 
+/* 自定义html模板 */
+import { createHtmlPlugin } from 'vite-plugin-html'
+
+/* cdn */
+import importToCDN from 'vite-plugin-cdn-import'
+
 /* 生成打包分析包 */
 const createVisualizer = (command) => {
   if (command === 'build') {
@@ -24,7 +30,7 @@ const createVisualizer = (command) => {
 
 export default defineConfig(({ command }) => ({
   /* 可以删除 只是用来配置git pages */
-  base: command === 'build' ? '/vue3-element-template/' : '',
+  // base: command === 'build' ? '/vue3-element-template/' : '',
   plugins: [
     vue(),
     AutoImport({
@@ -37,6 +43,24 @@ export default defineConfig(({ command }) => ({
     }),
 
     createVisualizer(command),
+
+    createHtmlPlugin({
+      inject: {
+        data: {
+          title: 'vue3-element-template',
+        },
+      },
+    }),
+
+    importToCDN({
+      modules: [
+        {
+          name: 'mockjs',
+          var: 'Mock',
+          path: `https://cdnjs.cloudflare.com/ajax/libs/Mock.js/1.0.0/mock-min.js`,
+        },
+      ],
+    }),
   ],
 
   resolve: {
@@ -56,4 +80,22 @@ export default defineConfig(({ command }) => ({
   //     },
   //   },
   // },
+
+  build: {
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+      },
+      external: ['mockjs'],
+    },
+    terserOptions: {
+      compress: {
+        //生产环境时移除console
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
 }))
