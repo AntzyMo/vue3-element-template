@@ -36,7 +36,7 @@
 </template>
 
 <style lang="scss" scoped>
-  :deep(.el-menu-item) {
+  :deep(.el-menu-item.is-active) {
     color: var(--theme-color);
   }
 
