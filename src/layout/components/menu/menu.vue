@@ -16,7 +16,6 @@
 
 <template>
   <el-menu
-    active-text-color="#ffd04b"
     background-color="#545c64"
     class="menuCom"
     :default-active="defaultAc"
@@ -37,6 +36,10 @@
 </template>
 
 <style lang="scss" scoped>
+  :deep(.el-menu-item) {
+    color: var(--theme-color);
+  }
+
   .menuCom {
     height: 100vh;
     .logo {
