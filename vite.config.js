@@ -30,7 +30,7 @@ const createVisualizer = (command) => {
 
 export default defineConfig(({ command }) => ({
   /* 可以删除 只是用来配置git pages */
-  base: command === 'build' ? '/vue3-element-template/' : '',
+  base: command === 'build' ? '/vue3-element-template/' : '/',
   plugins: [
     vue(),
     AutoImport({
@@ -84,12 +84,19 @@ export default defineConfig(({ command }) => ({
   build: {
     rollupOptions: {
       output: {
-        chunkFileNames: 'static/js/[name]-[hash].js',
-        entryFileNames: 'static/js/[name]-[hash].js',
-        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: '[ext]/[name]-[hash].[ext]',
+        // manualChunks(id) {
+        //   if (id.includes('node_modules')) { // 超大静态资源拆分
+        //     return id.toString().split('node_modules/')[1].split('/')[0].toString()
+        //   }
+        // }
       },
       external: ['mockjs'],
     },
+
+    minify: 'terser',
     terserOptions: {
       compress: {
         //生产环境时移除console

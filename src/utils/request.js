@@ -1,6 +1,8 @@
 import axios from 'axios'
 import qs from 'qs'
 import { ElMessage, ElLoading } from 'element-plus'
+import 'element-plus/es/components/loading/style/css'
+import 'element-plus/es/components/message/style/css'
 
 let loadingInstance
 
@@ -18,7 +20,7 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     if (config.loading) {
-      loadingInstance = ElLoading.service({text: '加载中'})
+      loadingInstance = ElLoading.service({ text: '加载中' })
     }
     return config
   },

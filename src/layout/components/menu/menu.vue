@@ -1,7 +1,10 @@
 <script setup>
   import menuItem from './menuItem.vue'
   import { useUser } from '@/stores'
+  import { useRoute } from 'vue-router'
   const store = useUser()
+  const route = useRoute()
+  const defaultAc = computed(() => (route.path == '/index' ? '/' : route.path))
 
   defineProps({
     collapsed: {
@@ -16,7 +19,7 @@
     active-text-color="#ffd04b"
     background-color="#545c64"
     class="menuCom"
-    default-active="2"
+    :default-active="defaultAc"
     text-color="#fff"
     :collapse="collapsed"
   >
@@ -25,10 +28,10 @@
     </el-menu-item>
 
     <menuItem
-      v-for="route in store.routesList"
-      :key="route.path"
-      :base-path="route.path"
-      :route="route"
+      v-for="router in store.routesList"
+      :key="router.path"
+      :base-path="router.path"
+      :route="router"
     />
   </el-menu>
 </template>

@@ -62,7 +62,6 @@
     justify-content: space-between;
     background: #fff;
     box-shadow: 2px 2px 2px #f1f1f1;
-    cursor: pointer;
     .trigger {
       font-size: 12px;
       width: 25px;
@@ -72,6 +71,8 @@
     .fr-box {
       display: flex;
       align-items: center;
+      cursor: pointer;
+
       :deep(.el-tooltip__trigger) {
         display: flex;
         align-items: center;
