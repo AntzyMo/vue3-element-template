@@ -32,10 +32,7 @@ service.interceptors.request.use(
 // 设置响应拦截
 service.interceptors.response.use(
   (res) => {
-    setTimeout(() => {
-      loadingInstance?.close()
-    }, 3000)
-
+    loadingInstance?.close()
     const { code, data, msg } = res.data
     if (code == 200) {
       return data
