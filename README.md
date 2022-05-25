@@ -14,6 +14,7 @@ vue3+element-plus+pinia+vite 一个简单的后台模板
 [x] 部署到`github pages`  
 [x] 关联了`github`和`gitee`仓库  
 [x] `mock.js`本地模拟数据
+[x] 实现动态路由
 
 ## 使用方法
 
