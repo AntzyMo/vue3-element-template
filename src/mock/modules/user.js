@@ -2,7 +2,29 @@ import { Random } from 'mockjs'
 import qs from 'qs'
 import { success, error } from '../utils'
 
-const routeList = ['page1', 'page2', 'page3', 'page4']
+// const routeList = ['page1', 'page2', 'page3', 'page4']
+const routeList = [
+  {
+    access: 'page1',
+    title: '页面1',
+    type: 0,
+  },
+  {
+    access: 'page2',
+    title: '页面2',
+    type: 1,
+  },
+  {
+    access: 'page3',
+    title: '页面3',
+    type: 2,
+  },
+  {
+    access: 'page4',
+    title: '页面4',
+    type: 3,
+  },
+]
 
 export default [
   {

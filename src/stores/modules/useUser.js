@@ -10,14 +10,28 @@ import router from '@/router'
  */
 const accessRouters = (asyncRouterMap, routes) => {
   /* 判断是否有权限 */
-  const hasPermission = (role) => routes?.includes(role)
+  const hasPermission = (item) => {
+    const { role } = item.meta
+    const isString = typeof routes[0] === 'string'
+
+    if (isString) {
+      return routes.includes(role)
+    } else {
+      // 如果是对象的话 把需要的参数放到meta里面
+      return routes.some((v) => {
+        item.meta = { ...item.meta, ...v }
+        return v.access === role
+      })
+    }
+  }
+
   const asyncRouter = asyncRouterMap.filter((item) => {
     if (item.children?.length) {
       item.children = accessRouters(item.children, routes)
       return item
     } else {
       if (item.meta.role) {
-        if (hasPermission(item.meta?.role)) {
+        if (hasPermission(item)) {
           return item
         }
         return false
