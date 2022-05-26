@@ -30,7 +30,7 @@ const accessRouters = (asyncRouterMap, routes) => {
       item.children = accessRouters(item.children, routes)
       return item
     } else {
-      if (item.meta.role) {
+      if (item.meta?.role) {
         if (hasPermission(item)) {
           return item
         }
@@ -77,10 +77,11 @@ export default defineStore({
     /* 获取路由 */
     async getRoutes() {
       const { routes } = router.options
-      const { routeList } = await getRoutes()
+
+      const { routeList, type } = await getRoutes({ type: 1 })
       this.permission = routeList
-      this.routesList = accessRouters(routes, routeList)
-      return routeList
+      this.routesList = type == 3 ? routeList : accessRouters(routes, routeList)
+      return { routes: routeList, type }
     },
 
     /* 退出登录 */

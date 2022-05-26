@@ -56,10 +56,10 @@ const asyncRouter = [
     ],
   },
 ]
+
 const routes = [
   {
     path: '/login',
-    name: 'login',
     meta: { hidden: true },
     component: () => import('@/views/login/index.vue'),
   },
@@ -78,12 +78,13 @@ const routes = [
     ],
   },
 
-  ...asyncRouter,
+  {
+    path: '/404',
+    component: () => import('@/views/errorPage/404.vue'),
+    meta: { hidden: true },
+  },
 
-  // {
-  //   path:'*',
-  //   component:
-  // }
+  ...asyncRouter,
 ]
 
 const router = createRouter({
