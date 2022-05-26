@@ -25,9 +25,9 @@
       <!-- 只显示一行 -->
       <router-link
         v-if="route.children.length === 1"
-        :to="resolvePath(basePath, route.path)"
+        :to="resolvePath(basePath, route.children[0].path)"
       >
-        <el-menu-item :index="resolvePath(basePath, route.path)">
+        <el-menu-item :index="resolvePath(basePath, route.children[0].path)">
           <span>{{ route.children[0].meta?.title }}</span>
         </el-menu-item>
       </router-link>
