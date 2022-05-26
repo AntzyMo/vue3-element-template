@@ -1,14 +1,14 @@
 <script setup>
-  import menuItem from './menuItem.vue'
-  import { useUser } from '@/stores'
-  const store = useUser()
+import menuItem from './menuItem.vue'
+import { useUser } from '@/stores'
+const store = useUser()
 
-  defineProps({
-    collapsed: {
-      type: Boolean,
-      default: false,
-    },
-  })
+defineProps({
+  collapsed: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 
 <template>
@@ -33,22 +33,26 @@
 </template>
 
 <style lang="scss" scoped>
-  :deep(.el-menu-item.is-active) {
-    color: var(--theme-color);
+:deep(.el-menu-item.is-active) {
+  color: var(--theme-color);
+}
+
+.menuCom {
+  height: 100vh;
+  &:not(.el-menu--collapse) {
+    width: 200px;
   }
 
-  .menuCom {
-    height: 100vh;
-    .logo {
-      height: 60px;
-      display: flex;
-      justify-content: center;
+  .logo {
+    height: 60px;
+    display: flex;
+    justify-content: center;
 
-      img {
-        width: 35px;
-        height: 35px;
-        margin-right: 10px;
-      }
+    img {
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
     }
   }
+}
 </style>
