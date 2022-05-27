@@ -10,8 +10,10 @@
     }
   }
 
+  /* 颜色切换 */
+  const colorPicker = ref('#409EFF')
   const changeTheme = (color) => {
-    document.documentElement.style.setProperty('--theme-color', color)
+    document.body.style.setProperty('--theme-color', color)
   }
 </script>
 
@@ -39,6 +41,11 @@
           <div class="color-box green" @click="changeTheme('#67C23A')" />
           <div class="color-box warn" @click="changeTheme('#E6A23C')" />
           <div class="color-box danger" @click="changeTheme('#F56C6C')" />
+          <el-color-picker
+            v-model="colorPicker"
+            size="large"
+            @change="changeTheme"
+          />
         </div>
       </template>
     </el-card>
@@ -48,11 +55,14 @@
 <style lang="scss" scoped>
   .box-card {
     margin-bottom: 20px;
+
     .card-header {
       margin-bottom: 10px;
     }
+
     .box {
       display: flex;
+
       .name {
         margin-right: 10px;
       }
@@ -64,9 +74,11 @@
         margin-right: 20px;
         cursor: pointer;
       }
+
       .blue {
         background: #409eff;
       }
+
       .green {
         background: #67c23a;
       }
