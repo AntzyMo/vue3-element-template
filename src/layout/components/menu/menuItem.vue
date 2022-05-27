@@ -1,7 +1,7 @@
 <script setup name="menuItem">
   import path from 'path-browserify'
   import menuItem from './menuItem.vue'
-
+  import { Basketball } from '@element-plus/icons-vue'
   defineProps({
     route: {
       type: Object,
@@ -34,6 +34,7 @@
 
       <el-sub-menu v-else :index="resolvePath(basePath, route.path)">
         <template #title>
+          <el-icon><Basketball /></el-icon>
           <span>{{ route.meta?.title || route.children[0].meta?.title }}</span>
         </template>
 
