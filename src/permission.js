@@ -1,5 +1,5 @@
 import router from './router'
-import { useUser } from '@/stores'
+import { useUser } from '@/store'
 import NProgress from 'nprogress' // 进度条
 import 'nprogress/nprogress.css'
 

@@ -1,6 +1,6 @@
 <script setup>
   import { Expand, Fold, CaretBottom } from '@element-plus/icons-vue'
-  import { useUser } from '@/stores'
+  import { useUser } from '@/store'
   const { logout } = useUser()
 
   const emit = defineEmits(['update:collapsed'])

@@ -1,6 +1,6 @@
 <script setup>
 import menuItem from './menuItem.vue'
-import { useUser } from '@/stores'
+import { useUser } from '@/store'
 const store = useUser()
 
 defineProps({

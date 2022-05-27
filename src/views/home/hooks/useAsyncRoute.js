@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useUser } from '@/stores'
+import { useUser } from '@/store'
 
 export default () => {
   const { changeAsyncRouterType } = useUser()
