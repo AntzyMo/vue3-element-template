@@ -1,20 +1,14 @@
 <script setup>
-  import { modofyRoutes } from '@/api/login'
-  const switchVal = ref(true)
+  import { useTheme, usePermission, useAsyncRoute } from './hooks'
 
-  const switchBtn = () => {
-    if (switchVal.value) {
-      modofyRoutes({ type: 1 })
-    } else {
-      modofyRoutes({ type: 0 })
-    }
-  }
+  /* 权限管理 */
+  const { switchVal, switchBtn } = usePermission()
 
   /* 颜色切换 */
-  const colorPicker = ref('#409EFF')
-  const changeTheme = (color) => {
-    document.body.style.setProperty('--theme-color', color)
-  }
+  const { colorPicker, changeTheme } = useTheme()
+
+  /* 动态路由模式切换 */
+  const { radioVal, changeRadio } = useAsyncRoute()
 </script>
 
 <template>
@@ -46,6 +40,21 @@
             size="large"
             @change="changeTheme"
           />
+        </div>
+      </template>
+    </el-card>
+
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>动态路由模式切换</span>
+        </div>
+        <div class="box">
+          <el-radio-group v-model="radioVal" @change="changeRadio">
+            <el-radio label="1" size="large">sting集合</el-radio>
+            <el-radio label="2" size="large">带参数的对象集合</el-radio>
+            <el-radio label="3" size="large">前端一样的路由结构</el-radio>
+          </el-radio-group>
         </div>
       </template>
     </el-card>

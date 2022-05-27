@@ -50,6 +50,8 @@ export default defineStore({
     userInfo: getStorage('userInfo') || {},
     permission: [],
     routesList: [],
+    // 可以删除 用于测试用例
+    asyncRouteType: 1,
   }),
   actions: {
     /* 登录 */
@@ -74,11 +76,17 @@ export default defineStore({
       }
     },
 
+    // 改变动态路由切换模式
+    changeAsyncRouterType(type = 1) {
+      this.asyncRouteType = type
+      this.getRoutes()
+    },
+
     /* 获取路由 */
     async getRoutes() {
       const { routes } = router.options
 
-      const { routeList, type } = await getRoutes({ type: 1 })
+      const { routeList, type } = await getRoutes({ type: this.asyncRouteType })
       this.permission = routeList
       this.routesList = type == 3 ? routeList : accessRouters(routes, routeList)
       return { routes: routeList, type }
