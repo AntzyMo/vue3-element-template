@@ -8,8 +8,8 @@
   const props = defineProps({
     collapsed: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   })
 
   // 处理侧边栏

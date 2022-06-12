@@ -11,19 +11,16 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 /* 生成依赖图 */
 import { visualizer } from 'rollup-plugin-visualizer'
 
-/* 自定义html模板 */
-import { createHtmlPlugin } from 'vite-plugin-html'
-
 /* cdn */
 import importToCDN from 'vite-plugin-cdn-import'
 
 /* 生成打包分析包 */
-const createVisualizer = (command) => {
+const createVisualizer = command => {
   if (command === 'build') {
     return visualizer({
       filename: 'visualizer.html',
       open: true,
-      brotliSize: true,
+      brotliSize: true
     })
   }
 }
@@ -36,37 +33,29 @@ export default defineConfig(({ command }) => ({
     AutoImport({
       resolvers: [ElementPlusResolver()],
       /* 注册全局引用 */
-      imports: ['vue'],
+      imports: ['vue']
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
 
     createVisualizer(command),
-
-    createHtmlPlugin({
-      inject: {
-        data: {
-          title: 'vue3-element-template',
-        },
-      },
-    }),
 
     importToCDN({
       modules: [
         {
           name: 'mockjs',
           var: 'Mock',
-          path: `https://cdnjs.cloudflare.com/ajax/libs/Mock.js/1.0.0/mock-min.js`,
-        },
-      ],
-    }),
+          path: `https://cdnjs.cloudflare.com/ajax/libs/Mock.js/1.0.0/mock-min.js`
+        }
+      ]
+    })
   ],
 
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
 
   // server: {
@@ -86,14 +75,14 @@ export default defineConfig(({ command }) => ({
       output: {
         chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
-        assetFileNames: '[ext]/[name]-[hash].[ext]',
+        assetFileNames: '[ext]/[name]-[hash].[ext]'
         // manualChunks(id) {
         //   if (id.includes('node_modules')) { // 超大静态资源拆分
         //     return id.toString().split('node_modules/')[1].split('/')[0].toString()
         //   }
         // }
       },
-      external: ['mockjs'],
+      external: ['mockjs']
     },
 
     minify: 'terser',
@@ -101,8 +90,8 @@ export default defineConfig(({ command }) => ({
       compress: {
         //生产环境时移除console
         drop_console: true,
-        drop_debugger: true,
-      },
-    },
-  },
+        drop_debugger: true
+      }
+    }
+  }
 }))

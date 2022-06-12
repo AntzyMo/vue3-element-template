@@ -19,7 +19,7 @@ NProgress.configure({ showSpinner: false })
 // 白名单(不需要登录就可以访问的名单)
 const whiteList = ['/login']
 
-router.beforeEach(async (to) => {
+router.beforeEach(async to => {
   const { token, getUserInfo, getRoutes } = useUser()
 
   // 进度条开始
@@ -51,7 +51,7 @@ router.beforeEach(async (to) => {
           if (type == 1) {
             return !routes.includes(to.meta.role)
           } else {
-            return !routes.some((item) => item.access == to.meta.role)
+            return !routes.some(item => item.access == to.meta.role)
           }
         }
         if (to.meta?.role) {

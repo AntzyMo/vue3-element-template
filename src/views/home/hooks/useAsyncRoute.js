@@ -5,11 +5,11 @@ export default () => {
   const { changeAsyncRouterType } = useUser()
   const radioVal = ref('1')
 
-  const changeRadio = (val) => {
+  const changeRadio = val => {
     changeAsyncRouterType(val)
   }
   return {
     radioVal,
-    changeRadio,
+    changeRadio
   }
 }
