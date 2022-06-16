@@ -24,15 +24,15 @@ const asyncRouter = [
         path: 'page1',
         name: 'page1',
         component: () => import('@/views/page/page1.vue'),
-        meta: { title: 'page1', role: 'page1' },
+        meta: { title: 'page1', role: 'page1' }
       },
       {
         path: 'page2',
         name: 'page2',
         component: () => import('@/views/page/page2.vue'),
-        meta: { title: 'page2', role: 'page2' },
-      },
-    ],
+        meta: { title: 'page2', role: 'page2' }
+      }
+    ]
   },
 
   {
@@ -45,23 +45,23 @@ const asyncRouter = [
         path: 'page3',
         name: 'page3',
         component: () => import('@/views/page1/page1.vue'),
-        meta: { title: 'page3', role: 'page3' },
+        meta: { title: 'page3', role: 'page3' }
       },
       {
         path: 'page4',
         name: 'page4',
         component: () => import('@/views/page1/page2.vue'),
-        meta: { title: 'page4', role: 'page4' },
-      },
-    ],
-  },
+        meta: { title: 'page4', role: 'page4' }
+      }
+    ]
+  }
 ]
 
 const routes = [
   {
     path: '/login',
     meta: { hidden: true },
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/views/login/index.vue')
   },
 
   {
@@ -73,23 +73,23 @@ const routes = [
         path: 'index',
         name: 'index',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页' },
-      },
-    ],
+        meta: { title: '首页' }
+      }
+    ]
   },
 
   {
     path: '/404',
     component: () => import('@/views/errorPage/404.vue'),
-    meta: { hidden: true },
+    meta: { hidden: true }
   },
 
-  ...asyncRouter,
+  ...asyncRouter
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
+  routes
 })
 
 export default router

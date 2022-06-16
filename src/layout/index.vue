@@ -1,9 +1,9 @@
 <script setup>
-import MenuCom from './components/menu/menu.vue'
-import MainCom from './components/main/index.vue'
-import headerCom from './components/header/index.vue'
+  import MenuCom from './components/menu/menu.vue'
+  import MainCom from './components/main/index.vue'
+  import headerCom from './components/header/index.vue'
 
-const collapsed = ref(false)
+  const collapsed = ref(false)
 </script>
 
 <template>
@@ -25,18 +25,18 @@ const collapsed = ref(false)
 </template>
 
 <style lang="scss" scoped>
-.common-layout {
-  .container {
-    height: 100vh;
+  .common-layout {
+    .container {
+      height: 100vh;
 
-    :deep(.el-aside) {
-      width: auto;
-      transition: var(--el-transition-all);
-    }
+      :deep(.el-aside) {
+        width: auto;
+        transition: var(--el-transition-all);
+      }
 
-    :deep(.el-header) {
-      padding: 0;
+      :deep(.el-header) {
+        padding: 0;
+      }
     }
   }
-}
 </style>
