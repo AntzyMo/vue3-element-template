@@ -1,10 +1,12 @@
 <script setup>
-  import { Expand, Fold, CaretBottom } from '@element-plus/icons-vue'
-  import { useUser } from '@/store'
+  import { Expand, Fold, CaretBottom, Close } from '@element-plus/icons-vue'
+  import { useUser, useTagViews } from '@/store'
+  import useTag from './hooks/useTag'
+
   const { logout } = useUser()
+  const { tagviews, closeTag } = useTag()
 
   const emit = defineEmits(['update:collapsed'])
-
   const props = defineProps({
     collapsed: {
       type: Boolean,
@@ -51,11 +53,20 @@
     </div>
 
     <div class="tags-box">
-      <div class="tag">
-        <span>仨猴爷</span>
+      <div
+        v-for="(item, index) in tagviews"
+        :key="item.path"
+        class="tag"
+        :class="{ active: $route.meta.title === item.title }"
+        @click="$router.push(item.path)"
+      >
+        <span>{{ item.title }}</span>
+        <Close
+          v-if="index != 0"
+          class="closeTag"
+          @click.stop="closeTag(index)"
+        />
       </div>
-      <div class="tag">城市</div>
-      <div class="tag">用户管理</div>
     </div>
   </div>
 </template>
@@ -71,10 +82,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-left: 20px;
-      padding-right: 40px;
       box-shadow: 2px 2px 2px #f1f1f1;
       margin-bottom: 5px;
+      padding: 9px 40px 8px 20px;
       .trigger {
         font-size: 12px;
         width: 25px;
@@ -114,21 +124,37 @@
     }
 
     .tags-box {
-      // border-top: 1px solid #000;
       display: flex;
       align-items: center;
-
       background: #fff;
       box-shadow: 2px 2px 2px #f1f1f1;
-      padding: 3px 40px 8px 20px;
+      padding: 3px 40px 6px 20px;
 
       .tag {
-        background-color: #42b983;
-        color: #fff;
+        border: 1px solid #d8dce5;
+        color: #495060;
+        background: #fff;
+        cursor: pointer;
         margin-right: 8px;
         padding: 5px;
         font-size: 14px;
         text-align: center;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-right: 5px;
+        }
+
+        .closeTag {
+          width: 12px;
+          cursor: pointer;
+        }
+      }
+
+      .active {
+        background-color: #42b983;
+        color: #fff;
       }
     }
   }

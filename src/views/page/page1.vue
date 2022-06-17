@@ -1,5 +1,11 @@
-<script setup></script>
+<script setup>
+  const input = ref('')
+</script>
 
-<template>page1</template>
+<template>
+  <div>
+    <el-input v-model="input" />
+  </div>
+</template>
 
 <style lang="scss" scoped></style>

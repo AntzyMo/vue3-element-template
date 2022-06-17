@@ -4,7 +4,7 @@ export const goBack = () => {
   router.go(-1)
 }
 
-export const getStorage = (key) => {
+export const getStorage = key => {
   const value = sessionStorage.getItem(key)
   return value ? JSON.stringify(value) : ''
 }
@@ -15,5 +15,5 @@ export const setStorage = (key, value) => {
 }
 
 export const removeStorage = (...rest) => {
-  rest.forEach((key) => sessionStorage.removeItem(key))
+  rest.forEach(key => sessionStorage.removeItem(key))
 }

@@ -1,5 +1,11 @@
-<script setup></script>
+<script setup name="page1">
+  const input = ref('')
+</script>
 
-<template>page3</template>
+<template>
+  <div>
+    <el-input v-model="input" />
+  </div>
+</template>
 
 <style lang="scss" scoped></style>

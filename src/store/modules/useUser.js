@@ -10,7 +10,7 @@ import router from '@/router'
  */
 const accessRouters = (asyncRouterMap, routes) => {
   /* 判断是否有权限 */
-  const hasPermission = (item) => {
+  const hasPermission = item => {
     const { role } = item.meta
     const isString = typeof routes[0] === 'string'
 
@@ -18,14 +18,14 @@ const accessRouters = (asyncRouterMap, routes) => {
       return routes.includes(role)
     } else {
       // 如果是对象的话 把需要的参数放到meta里面
-      return routes.some((v) => {
+      return routes.some(v => {
         item.meta = { ...item.meta, ...v }
         return v.access === role
       })
     }
   }
 
-  const asyncRouter = asyncRouterMap.filter((item) => {
+  const asyncRouter = asyncRouterMap.filter(item => {
     if (item.children?.length) {
       item.children = accessRouters(item.children, routes)
       return item
@@ -51,7 +51,7 @@ export default defineStore({
     permission: [],
     routesList: [],
     // 可以删除 用于测试用例
-    asyncRouteType: 1,
+    asyncRouteType: 1
   }),
   actions: {
     /* 登录 */
@@ -96,6 +96,6 @@ export default defineStore({
     logout() {
       removeStorage('token', 'userInfo')
       location.reload()
-    },
-  },
+    }
+  }
 })

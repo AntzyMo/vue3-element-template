@@ -13,7 +13,7 @@
         <MenuCom :collapsed="collapsed" />
       </el-aside>
       <el-container>
-        <el-header>
+        <el-header style="margin-bottom: 30px">
           <headerCom v-model:collapsed="collapsed" />
         </el-header>
         <el-main>
