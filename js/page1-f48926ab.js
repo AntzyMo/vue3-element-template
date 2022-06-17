@@ -1,0 +1,1 @@
+import{r as a,o as e,c as l,a as o}from"./index-ea9ec8aa.js";import{E as s}from"./el-input-fa225d6a.js";const t={__name:"page1",setup(t){const u=a("");return(a,t)=>{const n=s;return e(),l("div",null,[o(n,{modelValue:u.value,"onUpdate:modelValue":t[0]||(t[0]=a=>u.value=a)},null,8,["modelValue"])])}}};export{t as default};
